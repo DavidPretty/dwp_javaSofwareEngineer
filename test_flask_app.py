@@ -8,7 +8,7 @@ app = flask_app.app
 def client():
     app.config["TESTING"] = True
 
-def test_hello():
+def test_get_dummy_json():
     response = app.test_client().get('/')
     assert response.status_code == 200
-    assert response.data == "hello world"
+    assert response.is_json
