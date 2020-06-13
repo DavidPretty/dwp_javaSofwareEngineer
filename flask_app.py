@@ -1,10 +1,10 @@
 
 
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
 @app.route('/')
 def index():
-    return "hello world"
+    return jsonify(message =  "hello world")
