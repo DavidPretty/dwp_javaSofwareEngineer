@@ -1,4 +1,5 @@
 import pytest
-@pytest.fixture:
-    flask.app.config["TESTING"] = True
+@pytest.fixture
+def client():
+    flaskr.app.config["TESTING"] = True
 
