@@ -1,4 +1,4 @@
-import pytest
+import pytest, json
 
 import flask_app as fa
 
@@ -16,7 +16,7 @@ def test_api_get_returns_json():
 def test_api_get_returns_londoners():
     londoners = fa.get_londoners()
     response = app.test_client().get("/")
-    assert(londoners.json == response.get_json())
+    assert(londoners.json() == response.get_json())
 
 def test_get_londoners_not_return_none():
     londoners = fa.get_londoners()
