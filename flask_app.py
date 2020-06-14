@@ -1,4 +1,4 @@
-
+import requests
 
 from flask import Flask, jsonify
 
@@ -8,3 +8,6 @@ app.config["DEBUG"] = True
 @app.route('/')
 def index():
     return jsonify(message =  "hello world")
+
+def getLondoners():
+    pass
