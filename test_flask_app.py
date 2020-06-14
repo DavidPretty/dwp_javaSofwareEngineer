@@ -47,4 +47,13 @@ def test_get_londoners_and_nearby_not_return_none():
     list = fa.get_londoners_and_nearby()
     assert not list is None
 
+def test_get_londoners_and_nearby_returns_json():
+    londoners_plus = fa.get_londoners_and_nearby()
+    if londoners_plus is None:
+        pytest.fail("function output is None")
+    try:
+        jsonLon = json.loads(londoners_plus)
+    except ValueError:
+        pytest.fail("function output is not valid JSON")
+
 
