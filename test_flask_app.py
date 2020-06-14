@@ -16,3 +16,14 @@ def test_get_json(): #Test the get method returns json
 def test_get_londoners_not_return_none():
     londoners = fa.get_londoners()
     assert not londoners is None
+
+def test_get_londoners_returns_status_ok():
+    londoners = fa.get_londoners()
+    assert(londoners.ok)
+
+def test_get_londoners_returns_json():
+    londoners = fa.get_londoners()
+    try:
+        londoners.json
+    except ValueError:
+        pytest.fail("output does not contain valid JSON")
