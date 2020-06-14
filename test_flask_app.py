@@ -8,7 +8,7 @@ app = fa.app
 def client():
     app.config["TESTING"] = True
 
-def test_get_dummy_json():
+def test_get_json(): #Test the get method returns json
     response = app.test_client().get('/')
     assert response.status_code == 200
     assert response.is_json
