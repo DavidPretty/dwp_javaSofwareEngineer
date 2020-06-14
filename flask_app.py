@@ -5,6 +5,9 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+LONDON_LAT = 51.50868648029151
+LONDON_LONG = -0.1276495
+
 @app.route('/')
 def index():
     return jsonify(get_londoners().json())
