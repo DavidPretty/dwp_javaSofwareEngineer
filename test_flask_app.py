@@ -38,3 +38,8 @@ def test_get_haversine_distance_greater_than_50_miles():
 
 def test_get_haversine_distance_less_than_50_miles():
     assert(fa.get_haversine(50, 0, 50.5, 0) < 50)
+
+def test_get_users_not_return_none():
+    users = fa.get_users()
+    assert not users is None
+
