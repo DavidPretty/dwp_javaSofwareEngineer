@@ -13,6 +13,11 @@ def test_api_get_returns_json():
     assert response.status_code == 200
     assert response.is_json
 
+def test_api_get_returns_londoners():
+    londoners = fa.get_londoners()
+    response = app.test_client().get("/")
+    assert(londoners.json == response.get_json())
+
 def test_get_londoners_not_return_none():
     londoners = fa.get_londoners()
     assert not londoners is None
@@ -27,3 +32,5 @@ def test_get_londoners_returns_json():
         londoners.json
     except ValueError:
         pytest.fail("output does not contain valid JSON")
+
+
