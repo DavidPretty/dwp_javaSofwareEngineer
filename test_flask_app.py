@@ -43,3 +43,8 @@ def test_get_users_not_return_none():
     users = fa.get_users()
     assert not users is None
 
+def test_get_londoners_and_nearby_not_return_none():
+    list = fa.get_londoners_and_nearby()
+    assert not list is None
+
+
