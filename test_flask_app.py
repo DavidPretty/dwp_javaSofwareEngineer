@@ -33,4 +33,8 @@ def test_get_londoners_returns_json():
     except ValueError:
         pytest.fail("output does not contain valid JSON")
 
+def test_get_haversine_distance_greater_than_50_miles():
+    assert(fa.get_haversine(50, 0, 51, 0) > 50)
 
+def test_get_haversine_distance_less_than_50_miles():
+    assert(fa.get_haversine(50, 0, 50.5, 0) < 50)
