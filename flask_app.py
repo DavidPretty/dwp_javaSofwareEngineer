@@ -19,11 +19,24 @@ def get_users():
     return requests.get("https://bpdts-test-app.herokuapp.com/users")
 
 def get_nearby():
-    pass
+    users = get_users().json()
+    nearby = []
+    for user in users:
+        if get_haversine(float(user["latitude"]), float(user["longitude"]), \
+        LONDON_LAT, LONDON_LONG) <= 50:
+            nearby.append(user)
+    return nearby
 
 def get_londoners_and_nearby():
-    results = get_londoners().json()
-    return results
+    londoners = get_londoners().json()
+    nearby = get_nearby()
+    londoner_dict = dict((item["id"], item) for item in londoners)
+    nearby_dict = dict((item["id"], item) for item in nearby)
+    results = {}
+    results.update(londoner_dict)
+    results.update(nearby_dict)
+    return results.values()
+
 
 def get_haversine(latX, lonX, latY, lonY):
     R = 3958.8  # Earth's radius in miles
