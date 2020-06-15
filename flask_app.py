@@ -19,7 +19,8 @@ def get_users():
     return requests.get("https://bpdts-test-app.herokuapp.com/users")
 
 def get_londoners_and_nearby():
-    return None
+    results = get_londoners().json()
+    return results
 
 def get_haversine(latX, lonX, latY, lonY):
     R = 3958.8  # Earth's radius in miles
