@@ -1,4 +1,4 @@
-import pytest, json
+import pytest
 
 import flask_app as fa
 
