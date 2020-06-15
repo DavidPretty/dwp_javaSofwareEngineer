@@ -19,8 +19,8 @@ The API is online at [http://thistledown.pythonanywhere.com]
 The tests are are all contained in test_flask_app.py and can be invoked by running pytest from the command line.
 
 ## Possible Improvements
-* The API does not deal with the helper API failing, it could be amended so it returns a 500 Response if this occurs
-* The tests invoke methods that call the helper API. This maes them dependent on the helper API and meansthe tests cannot model the failure of the helper API. This could be improved by mocking the helper API, which would remove that dependency from testing and allow testing of how the API handles the failure of the helper API.
+* The API does not deal with the helper API failing, it could be amended so it returns a 500 response if this occurs.
+* The tests invoke methods that call the helper API. This makes them dependent on the helper API and means the tests cannot model the failure of the helper API. This could be improved by mocking the helper API, which would remove that dependency from testing and allow testing of how the API handles the failure of the helper API.
 
 ## Built With
 
