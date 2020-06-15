@@ -54,7 +54,7 @@ def test_get_londoners_and_nearby_contains_all_users_in_get_londoners():
         londoners = londoners.json()
         londoners_dict = dict((item["id"], item) for item in londoners)
         combined_dict = dict((item["id"], item) for item in combined)
-        assert londoners_dict.viewkeys <= combined_dict.viewkeys
+        assert londoners_dict.keys() <= combined_dict.keys()
     else:
         pytest.fail("one of the lists of users is None")
 
