@@ -10,8 +10,12 @@ def client():
 
 def test_api_get_returns_json():
     response = app.test_client().get('/')
-    assert response.status_code == 200
     assert response.is_json
+
+def test_api_get_returns_status_OK():
+    response = app.test_client().get('/')
+    assert response.status_code == 200
+
 
 def test_api_get_returns_londoners():
     londoners = fa.get_londoners()
