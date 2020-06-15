@@ -13,7 +13,7 @@ R = 3958.8  # Earth's radius in miles
 
 @app.route('/')
 def index():
-    return jsonify(get_londoners().json())
+    return jsonify(get_londoners_and_nearby())
 
 def get_londoners():
     return requests.get("https://bpdts-test-app.herokuapp.com/city/London/users")
@@ -38,7 +38,7 @@ def get_londoners_and_nearby():
     results = {}
     results.update(londoner_dict)
     results.update(nearby_dict)
-    return results.values()
+    return list(results.values())
 
 
 def get_haversine(latX, lonX, latY, lonY):
