@@ -58,5 +58,15 @@ def test_get_londoners_and_nearby_contains_all_users_in_get_londoners():
     else:
         pytest.fail("one of the lists of users is None")
 
+def test_get_londoners_and_nearby_contains_all_users_in_get_nearby():
+    nearby = fa.get_nearby()
+    combined = fa.get_londoners_and_nearby()
+    if (nearby is not None) and (combined is not None):
+        nearby_dict = dict((item["id"], item) for item in nearby)
+        combined_dict = dict((item["id"], item) for item in combined)
+        assert nearby_dict.keys() <= combined_dict.keys()
+    else:
+        pytest.fail("one of the lists of users is None")
+
 
 
