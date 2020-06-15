@@ -17,10 +17,10 @@ def test_api_get_returns_status_OK():
     assert response.status_code == 200
 
 
-def test_api_get_returns_londoners():
-    londoners = fa.get_londoners()
+def test_api_get_returns_get_londoners_and_nearby():
+    londoners_and_nearby = fa.get_londoners_and_nearby()
     response = app.test_client().get("/")
-    assert(londoners.json() == response.get_json())
+    assert(londoners_and_nearby == response.get_json())
 
 def test_get_londoners_not_return_none():
     londoners = fa.get_londoners()
