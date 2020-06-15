@@ -7,6 +7,9 @@ app.config["DEBUG"] = True
 
 LONDON_LAT = 51.50868648029151
 LONDON_LONG = -0.1276495
+NEARBY = 50
+R = 3958.8  # Earth's radius in miles
+
 
 @app.route('/')
 def index():
@@ -23,7 +26,7 @@ def get_nearby():
     nearby = []
     for user in users:
         if get_haversine(float(user["latitude"]), float(user["longitude"]), \
-        LONDON_LAT, LONDON_LONG) <= 50:
+        LONDON_LAT, LONDON_LONG) <= NEARBY:
             nearby.append(user)
     return nearby
 
@@ -39,7 +42,6 @@ def get_londoners_and_nearby():
 
 
 def get_haversine(latX, lonX, latY, lonY):
-    R = 3958.8  # Earth's radius in miles
 
     diffLat = radians(latY - latX)
     diffLon = radians(lonY - lonX)
