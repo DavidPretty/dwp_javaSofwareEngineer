@@ -18,6 +18,9 @@ def get_londoners():
 def get_users():
     return requests.get("https://bpdts-test-app.herokuapp.com/users")
 
+def get_nearby():
+    pass
+
 def get_londoners_and_nearby():
     results = get_londoners().json()
     return results
