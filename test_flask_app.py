@@ -47,5 +47,16 @@ def test_get_londoners_and_nearby_not_return_none():
     list = fa.get_londoners_and_nearby()
     assert not list is None
 
+def test_get_londoners_and_nearby_contains_all_users_in_get_londoners():
+    londoners = fa.get_londoners()
+    combined = fa.get_londoners_and_nearby()
+    if (londoners is not None) and (combined is not None):
+        londoners = londoners.json()
+        londoners_dict = dict((item["id"], item) for item in londoners)
+        combined_dict = dict((item["id"], item) for item in combined)
+        assert londoners_dict.viewkeys <= combined_dict.viewkeys
+    else:
+        pytest.fail("one of the lists of users is None")
+
 
 
