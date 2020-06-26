@@ -10,14 +10,14 @@ def client():
     app.config["TESTING"] = True
 
 @patch("flask_app.requests.get")
-def test_api_get_returns_json(response):
-    response.return_value.is_json = True
-    assert response.is_json
+def test_api_get_returns_json(mock_response):
+    mock_response.return_value.is_json = True
+    assert mock_response.is_json
 
-def test_api_get_returns_status_OK():
-    response = app.test_client().get('/')
-    assert response.status_code == 200
-
+@patch("flask_app.requests.get")
+def test_api_get_returns_status_OK(mock_response):
+    mock_response.return_value.status_code = 200
+    assert mock_response.status_code == 200
 
 def test_api_get_returns_get_londoners_and_nearby():
     londoners_and_nearby = fa.get_londoners_and_nearby()
