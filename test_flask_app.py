@@ -1,4 +1,5 @@
 import pytest
+from mock import patch
 
 import flask_app as fa
 
@@ -8,8 +9,9 @@ app = fa.app
 def client():
     app.config["TESTING"] = True
 
-def test_api_get_returns_json():
-    response = app.test_client().get('/')
+@patch("flask_app.requests.get")
+def test_api_get_returns_json(response):
+    response.return_value.is_json = True
     assert response.is_json
 
 def test_api_get_returns_status_OK():
