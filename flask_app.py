@@ -1,15 +1,10 @@
 import requests
 from math import radians, sin, cos, sqrt, asin
 from flask import Flask, jsonify
+from geo import LONDON_LAT, LONDON_LONG, NEARBY, R
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
-
-LONDON_LAT = 51.50868648029151 #Trafalgar Square
-LONDON_LONG = -0.1276495 #Trafalgar Square
-NEARBY = 50
-R = 3958.8  # Earth's radius in miles
-
 
 @app.route('/')
 def index():
