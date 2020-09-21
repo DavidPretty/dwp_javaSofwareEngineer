@@ -1,7 +1,6 @@
 import requests
-from math import radians, sin, cos, sqrt, asin
 from flask import Flask, jsonify
-from geo import LONDON_LAT, LONDON_LONG, NEARBY, R
+from geo import get_haversine,LONDON_LAT, LONDON_LONG, NEARBY
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -34,16 +33,3 @@ def get_londoners_and_nearby():
     results.update(londoner_dict)
     results.update(nearby_dict)
     return list(results.values())
-
-
-def get_haversine(latX, lonX, latY, lonY):
-
-    diffLat = radians(latY - latX)
-    diffLon = radians(lonY - lonX)
-    latX = radians(latX)
-    latY = radians(latY)
-
-    a = sin(diffLat / 2)**2 + cos(latX) * cos(latY) * sin(diffLon / 2)**2
-    c = 2 * asin(sqrt(a))
-
-    return R * c
