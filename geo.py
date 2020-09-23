@@ -16,3 +16,6 @@ def get_haversine(latX, lonX, latY, lonY):
     c = 2 * asin(sqrt(a))
 
     return R * c
+
+def is_nearby(latX, lonX):
+    pass
