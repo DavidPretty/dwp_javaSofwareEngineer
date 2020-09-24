@@ -73,8 +73,8 @@ def test_get_londoners_and_nearby_contains_all_users_in_get_nearby():
     else:
         pytest.fail("one of the lists of users is None")
 
-def test_is_nearby_returns_true_for_nearby_lat_long():
-    assert geo.is_nearby(51.35527,-0.13472)
+def test_is_within_50_miles_of_London_returns_true_for_within_50_miles_lat_long():
+    assert geo.is_within_50_miles_of_London(51.35527,-0.13472)
 
-def test_is_nearby_returns_false_for_not_nearby_lat_long():
-    assert not geo.is_nearby(52.39312, 0.72292)
+def test_is_within_50_miles_of_London_returns_false_for_outside_50_miles_lat_long():
+    assert not geo.is_within_50_miles_of_London(52.39312, 0.72292)

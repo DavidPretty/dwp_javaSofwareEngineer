@@ -17,5 +17,5 @@ def get_haversine(latX, lonX, latY, lonY):
 
     return R * c
 
-def is_nearby(latX, lonX):
+def is_within_50_miles_of_London(latX, lonX):
     return get_haversine(latX, lonX, LONDON_LAT, LONDON_LONG) <= NEARBY
