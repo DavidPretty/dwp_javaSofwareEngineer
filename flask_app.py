@@ -1,6 +1,6 @@
 import requests
 from flask import Flask, jsonify
-import geo
+from geo import is_within_50_miles_of_London
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -19,7 +19,7 @@ def get_nearby():
     users = get_users().json()
     nearby = []
     for user in users:
-        if geo.is_within_50_miles_of_London(float(user["latitude"]), float(user["longitude"])):
+        if is_within_50_miles_of_London(float(user["latitude"]), float(user["longitude"])):
             nearby.append(user)
     return nearby
 
