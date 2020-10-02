@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, jsonify
 from geo import is_within_50_miles_of_London
+import user_data
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -8,9 +9,6 @@ app.config["DEBUG"] = True
 @app.route('/')
 def index():
     return jsonify(get_londoners_and_nearby())
-
-def get_londoners():
-    return requests.get("https://bpdts-test-app.herokuapp.com/city/London/users")
 
 def get_users():
     return requests.get("https://bpdts-test-app.herokuapp.com/users")
@@ -24,7 +22,7 @@ def get_nearby():
     return nearby
 
 def get_londoners_and_nearby():
-    londoners = get_londoners().json()
+    londoners = user_data.get_londoners().json()
     nearby = get_nearby()
     londoner_dict = dict((item["id"], item) for item in londoners)
     nearby_dict = dict((item["id"], item) for item in nearby)

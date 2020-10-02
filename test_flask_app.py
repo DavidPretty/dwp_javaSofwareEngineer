@@ -1,6 +1,7 @@
 import pytest
 
 import flask_app as fa
+import user_data
 import geo
 
 app = fa.app
@@ -24,15 +25,15 @@ def test_api_get_returns_get_londoners_and_nearby():
     assert(londoners_and_nearby == response.get_json())
 
 def test_get_londoners_not_return_none():
-    londoners = fa.get_londoners()
+    londoners = user_data.get_londoners()
     assert not londoners is None
 
 def test_get_londoners_returns_status_ok():
-    londoners = fa.get_londoners()
+    londoners = user_data.get_londoners()
     assert(londoners.ok)
 
 def test_get_londoners_returns_json():
-    londoners = fa.get_londoners()
+    londoners = user_data.get_londoners()
     try:
         londoners.json
     except ValueError:
@@ -53,7 +54,7 @@ def test_get_londoners_and_nearby_not_return_none():
     assert not list is None
 
 def test_get_londoners_and_nearby_contains_all_users_in_get_londoners():
-    londoners = fa.get_londoners()
+    londoners = user_data.get_londoners()
     combined = fa.get_londoners_and_nearby()
     if (londoners is not None) and (combined is not None):
         londoners = londoners.json()
