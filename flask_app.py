@@ -1,4 +1,3 @@
-import requests
 from flask import Flask, jsonify
 from geo import is_within_50_miles_of_London
 import user_data
@@ -10,11 +9,8 @@ app.config["DEBUG"] = True
 def index():
     return jsonify(get_londoners_and_nearby())
 
-def get_users():
-    return requests.get("https://bpdts-test-app.herokuapp.com/users")
-
 def get_nearby():
-    users = get_users().json()
+    users = user_data.get_users().json()
     nearby = []
     for user in users:
         if is_within_50_miles_of_London(float(user["latitude"]), float(user["longitude"])):
