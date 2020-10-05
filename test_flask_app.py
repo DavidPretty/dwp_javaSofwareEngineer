@@ -17,12 +17,10 @@ def test_api_get_returns_status_OK():
     response = app.test_client().get('/')
     assert response.status_code == 200
 
-
 def test_api_get_returns_get_londoners_and_nearby():
     londoners_and_nearby = fa.get_londoners_and_nearby()
     response = app.test_client().get("/")
     assert(londoners_and_nearby == response.get_json())
-
 
 def test_get_londoners_and_nearby_not_return_none():
     list = fa.get_londoners_and_nearby()
