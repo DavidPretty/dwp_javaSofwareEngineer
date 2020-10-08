@@ -1,4 +1,4 @@
-import geo
+import mysite.geo as geo
 
 def test_get_haversine_distance_greater_than_50_miles():
     assert(geo.get_haversine(50, 0, 51, 0) > 50)

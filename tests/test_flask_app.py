@@ -1,7 +1,7 @@
 import pytest
 
-import flask_app as fa
-import user_data
+import mysite.flask_app as fa
+import mysite.user_data as user_data
 
 app = fa.app
 

@@ -1,6 +1,6 @@
 from flask import Flask, jsonify
-from geo import is_within_50_miles_of_London
-import user_data
+from mysite.geo import is_within_50_miles_of_London
+import mysite.user_data as user_data
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
