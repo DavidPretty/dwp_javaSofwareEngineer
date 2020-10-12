@@ -1,4 +1,4 @@
-import mysite.user_data as user_data
+import mysite.flaskr.user_data as user_data
 import pytest
 
 def test_get_londoners_returns_status_ok():
