@@ -1,5 +1,11 @@
 import mysite.flaskr.user_data as user_data
 import pytest
+from unittest import mock
+
+def mock_requests_get(url):
+    #code to return new request object
+    pass
+
 
 def test_get_londoners_returns_status_ok():
     londoners = user_data.get_londoners()
