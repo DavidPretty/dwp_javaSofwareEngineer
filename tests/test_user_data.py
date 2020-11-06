@@ -1,8 +1,9 @@
 import mysite.flaskr.user_data as user_data
 import pytest
-from unittest import mock
+from unittest.mock import patch
 from requests import Response
 import json
+
 
 
 def mock_requests_get(url):
@@ -19,6 +20,8 @@ def mock_requests_get(url):
     mock_response.content = data
     return mock_response
 
+
+@patch("mysite.user_data.requests.get", mock_requests_get)
 def test_get_londoners_returns_status_ok():
     londoners = user_data.get_londoners()
     assert(londoners.ok)
