@@ -21,7 +21,7 @@ def mock_requests_get(url):
     return mock_response
 
 
-@patch("mysite.user_data.requests.get", mock_requests_get)
+@patch("mysite.flaskr.user_data.requests.get", mock_requests_get)
 def test_get_londoners_returns_status_ok():
     londoners = user_data.get_londoners()
     assert(londoners.ok)
