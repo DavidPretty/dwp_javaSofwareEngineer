@@ -9,7 +9,7 @@ import json
 def mock_requests_get(url):
     #code to return new response object
     mock_response = Response()
-    mock_response.ok = True
+    mock_response.status_code = 200
     data = object()
     if(url == "https://bpdts-test-app.herokuapp.com/city/London/users"):
         with open("../test_data/all_users.json") as all_users:
