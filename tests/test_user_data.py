@@ -3,6 +3,7 @@ import pytest
 from unittest.mock import patch
 from requests import Response
 import json
+import os
 
 
 
@@ -11,11 +12,14 @@ def mock_requests_get(url):
     mock_response = Response()
     mock_response.status_code = 200
     data = object()
+    my_path = os.path.abspath(os.path.dirname(__file__))
     if(url == "https://bpdts-test-app.herokuapp.com/city/London/users"):
-        with open("../test_data/all_users.json") as all_users:
+        path = os.path.join(my_path, "../test_data/all_users.json")
+        with open(path) as all_users:
             data = json.load(all_users)
     if(url == "https://bpdts-test-app.herokuapp.com/users"):
-        with open ("../test_data/londoners.json") as londoners:
+        path = os.path.join(my_path, "../test_data/londoners.json")
+        with open (path) as londoners:
             data = json.load(londoners)
     mock_response.content = data
     return mock_response
