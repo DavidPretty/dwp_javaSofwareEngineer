@@ -1,16 +1,10 @@
 import mysite.flaskr.user_data as user_data
 import pytest
 from unittest.mock import patch
-from requests import Response
 import json
 import os
 
-
-
-def mock_requests_get(url):
-    #code to return new response object
-    mock_response = Response()
-    mock_response.status_code = 200
+def get_mock_json(url):
     data = object()
     my_path = os.path.abspath(os.path.dirname(__file__))
     if(url == "https://bpdts-test-app.herokuapp.com/city/London/users"):
@@ -21,8 +15,7 @@ def mock_requests_get(url):
         path = os.path.join(my_path, "../test_data/londoners.json")
         with open (path) as londoners:
             data = json.load(londoners)
-    mock_response.content = data
-    return mock_response
+    return data
 
 
 @patch("mysite.flaskr.user_data.requests.get")
