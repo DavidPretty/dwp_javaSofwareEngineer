@@ -25,7 +25,7 @@ def test_get_londoners_returns_status_ok(mock_get_londoners):
     assert(londoners.ok)
 
 @patch("mysite.flaskr.user_data.requests.get")
-def test_get_londoners_returns_json(mock_get_londoners):
+def test_get_londoners_returns_json(get_mock_json):
     londoners = user_data.get_londoners()
     try:
         londoners.json
