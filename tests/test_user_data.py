@@ -37,6 +37,7 @@ def test_get_users_not_return_none(get_mock_json):
     users = user_data.get_users()
     assert not users is None
 
-def test_get_londoners_not_return_none():
+@patch("mysite.flaskr.user_data.requests.get")
+def test_get_londoners_not_return_none(get_mock_json):
     londoners = user_data.get_londoners()
     assert not londoners is None
