@@ -2,14 +2,24 @@ import pytest
 
 import mysite.flaskr.flask_app as fa
 import mysite.flaskr.user_data as user_data
+from unittest.mock import patch, Mock
+import json
+import os
+from mysite.tests.test_user_data import get_mock_londoners
+
 
 app = fa.app
+
+mockLondonersResponse = Mock()
+mockLondonersResponse.json_data.return_value = get_mock_londoners()
 
 @pytest.fixture
 def client():
     app.config["TESTING"] = True
 
+##@patch("mysite.flaskr.user_data.get_londoners", mockLondonersResponse)
 def test_api_get_returns_json():
+    pytest.fail("".join(type(get_mock_londoners())))  ##Get type of get_mock_londoners() and mockLondonersResponse.json(), see the diff
     response = app.test_client().get('/')
     assert response.is_json
 
