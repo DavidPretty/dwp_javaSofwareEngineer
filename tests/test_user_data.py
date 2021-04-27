@@ -1,6 +1,6 @@
 import mysite.flaskr.user_data as user_data
 import pytest
-from unittest.mock import patch
+from mock import patch
 import json
 import os
 
