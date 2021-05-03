@@ -8,11 +8,11 @@ def get_mock_json(url):
     data = object()
     my_path = os.path.abspath(os.path.dirname(__file__))
     if(url == "https://bpdts-test-app.herokuapp.com/city/London/users"):
-        path = os.path.join(my_path, "../test_data/all_users.json")
+        path = os.path.join(my_path, "../test_data/londoners.json")
         with open(path) as all_users:
             data = json.load(all_users)
     if(url == "https://bpdts-test-app.herokuapp.com/users"):
-        path = os.path.join(my_path, "../test_data/londoners.json")
+        path = os.path.join(my_path, "../test_data/all_users.json")
         with open (path) as londoners:
             data = json.load(londoners)
     return data
