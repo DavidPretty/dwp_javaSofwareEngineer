@@ -19,7 +19,6 @@ def client():
 
 ##@patch("mysite.flaskr.user_data.get_londoners", mockLondonersResponse)
 def test_api_get_returns_json():
-    pytest.fail(str(type(get_mock_londoners())) + " " + str(type(mockLondonersResponse.json())))  ##Get type of get_mock_londoners() and mockLondonersResponse.json(), see the diff
     response = app.test_client().get('/')
     assert response.is_json
 
