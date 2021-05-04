@@ -1,6 +1,6 @@
 import mysite.flaskr.user_data as user_data
 import pytest
-from mock import patch
+from mock import patch, Mock
 from requests.models import Response
 
 import os
