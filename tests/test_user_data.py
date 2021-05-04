@@ -1,7 +1,6 @@
 import mysite.flaskr.user_data as user_data
 import pytest
 from mock import patch
-import json
 import os
 
 def get_mock_json(url):
@@ -9,12 +8,12 @@ def get_mock_json(url):
     my_path = os.path.abspath(os.path.dirname(__file__))
     if(url == "https://bpdts-test-app.herokuapp.com/city/London/users"):
         path = os.path.join(my_path, "../test_data/londoners.json")
-        with open(path) as all_users:
-            data = json.load(all_users)
+        with open(path) as londoners:
+            data = londoners.read()
     if(url == "https://bpdts-test-app.herokuapp.com/users"):
         path = os.path.join(my_path, "../test_data/all_users.json")
-        with open (path) as londoners:
-            data = json.load(londoners)
+        with open (path) as all_users:
+            data = all_users.read()
     return data
 
 def get_mock_londoners():
