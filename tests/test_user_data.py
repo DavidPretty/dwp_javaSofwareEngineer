@@ -6,7 +6,6 @@ from requests.models import Response
 import os
 
 def get_mock_json(url):
-    data = object()
     my_path = os.path.abspath(os.path.dirname(__file__))
     if(url == "https://bpdts-test-app.herokuapp.com/city/London/users"):
         path = os.path.join(my_path, "../test_data/londoners.json")
