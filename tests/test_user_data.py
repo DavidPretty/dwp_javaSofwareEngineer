@@ -22,7 +22,7 @@ def get_mock_londoners():
 
 @patch("mysite.flaskr.user_data.requests.get")
 def test_get_londoners_returns_status_ok(get_mock_londoners):
-    mock_get_londoners.return_value.ok = True
+    get_mock_londoners.return_value.ok = True
     londoners = user_data.get_londoners()
     assert(londoners.ok)
 
