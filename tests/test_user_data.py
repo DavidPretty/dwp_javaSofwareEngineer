@@ -24,7 +24,7 @@ def get_mock_response(url):
     return mock_response
 
 def get_mock_londoners():
-    return get_mock_json("https://bpdts-test-app.herokuapp.com/city/London/users")
+    return get_mock_response("https://bpdts-test-app.herokuapp.com/city/London/users")
 
 
 @patch("mysite.flaskr.user_data.requests.get")
