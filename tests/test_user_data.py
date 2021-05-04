@@ -1,6 +1,8 @@
 import mysite.flaskr.user_data as user_data
 import pytest
 from mock import patch
+from requests.models import Response
+
 import os
 
 def get_mock_json(url):
@@ -15,6 +17,12 @@ def get_mock_json(url):
         with open (path) as all_users:
             data = all_users.read()
     return data
+
+def get_mock_response(url):
+    mock_response = Mock(spec = Response)
+    mock_response.json.return_value = get_mock_json(url)
+    mock_response.status_code = 200
+    return mock_response
 
 def get_mock_londoners():
     return get_mock_json("https://bpdts-test-app.herokuapp.com/city/London/users")
