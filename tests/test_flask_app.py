@@ -2,9 +2,6 @@ import pytest
 
 import mysite.flaskr.flask_app as fa
 import mysite.flaskr.user_data as user_data
-from mock import patch, Mock
-import json
-import os
 from mysite.tests.test_user_data import get_mock_londoners
 
 
