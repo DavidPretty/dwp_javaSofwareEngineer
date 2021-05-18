@@ -1,60 +1,43 @@
 import pytest
 from mock import patch
 
-import flask_app as fa
+import mysite.flaskr.flask_app as fa
+import mysite.flaskr.user_data as user_data
+from mysite.tests.test_user_data import get_mock_londoners
+
 
 app = fa.app
+
+mockLondonersResponse = Mock()
+mockLondonersResponse.json_data.return_value = get_mock_londoners()
 
 @pytest.fixture
 def client():
     app.config["TESTING"] = True
 
-@patch("flask_app.requests.get")
-def test_api_get_returns_json(mock_response):
-    mock_response.return_value.is_json = True
-    assert mock_response.is_json
 
 @patch("flask_app.requests.get")
 def test_api_get_returns_status_OK(mock_response):
     mock_response.return_value.status_code = 200
     assert mock_response.status_code == 200
 
+@patch("mysite.flaskr.user_data.get_londoners", mockLondonersResponse)
+def test_api_get_returns_json():
+    response = app.test_client().get('/')
+    assert response.is_json
+
+>>>>>>> makeMVC:tests/test_flask_app.py
 def test_api_get_returns_get_londoners_and_nearby():
     londoners_and_nearby = fa.get_londoners_and_nearby()
     response = app.test_client().get("/")
     assert(londoners_and_nearby == response.get_json())
-
-def test_get_londoners_not_return_none():
-    londoners = fa.get_londoners()
-    assert not londoners is None
-
-def test_get_londoners_returns_status_ok():
-    londoners = fa.get_londoners()
-    assert(londoners.ok)
-
-def test_get_londoners_returns_json():
-    londoners = fa.get_londoners()
-    try:
-        londoners.json
-    except ValueError:
-        pytest.fail("output does not contain valid JSON")
-
-def test_get_haversine_distance_greater_than_50_miles():
-    assert(fa.get_haversine(50, 0, 51, 0) > 50)
-
-def test_get_haversine_distance_less_than_50_miles():
-    assert(fa.get_haversine(50, 0, 50.5, 0) < 50)
-
-def test_get_users_not_return_none():
-    users = fa.get_users()
-    assert not users is None
 
 def test_get_londoners_and_nearby_not_return_none():
     list = fa.get_londoners_and_nearby()
     assert not list is None
 
 def test_get_londoners_and_nearby_contains_all_users_in_get_londoners():
-    londoners = fa.get_londoners()
+    londoners = user_data.get_londoners()
     combined = fa.get_londoners_and_nearby()
     if (londoners is not None) and (combined is not None):
         londoners = londoners.json()
@@ -73,6 +56,3 @@ def test_get_londoners_and_nearby_contains_all_users_in_get_nearby():
         assert nearby_dict.keys() <= combined_dict.keys()
     else:
         pytest.fail("one of the lists of users is None")
-
-
-
