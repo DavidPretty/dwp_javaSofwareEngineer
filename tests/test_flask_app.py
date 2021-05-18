@@ -26,7 +26,6 @@ def test_api_get_returns_json():
     response = app.test_client().get('/')
     assert response.is_json
 
->>>>>>> makeMVC:tests/test_flask_app.py
 def test_api_get_returns_get_londoners_and_nearby():
     londoners_and_nearby = fa.get_londoners_and_nearby()
     response = app.test_client().get("/")
