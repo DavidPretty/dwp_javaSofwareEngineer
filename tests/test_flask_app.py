@@ -1,5 +1,5 @@
 import pytest
-from mock import patch
+from mock import patch, Mock
 
 import mysite.flaskr.flask_app as fa
 import mysite.flaskr.user_data as user_data
