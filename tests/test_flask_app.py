@@ -16,7 +16,7 @@ def client():
     app.config["TESTING"] = True
 
 
-@patch("flask_app.requests.get")
+@patch("mysite.flaskr.user_data.requests.get")
 def test_api_get_returns_status_OK(mock_response):
     mock_response.return_value.status_code = 200
     assert mock_response.status_code == 200
