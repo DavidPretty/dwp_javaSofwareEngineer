@@ -1,5 +1,5 @@
 import pytest
-from mock import patch, Mock
+from mock import patch, Mock, PropertyMock
 
 import mysite.flaskr.flask_app as fa
 import mysite.flaskr.user_data as user_data
@@ -18,7 +18,7 @@ def client():
 
 @patch("mysite.flaskr.user_data.requests.get")
 def test_api_get_returns_status_OK(mock_response):
-    mock_response.return_value.status_code = 200
+    type(mock_response).status_code = PropertyMock(return_value = 200)
     assert mock_response.status_code == 200
 
 @patch("mysite.flaskr.user_data.get_londoners", mockLondonersResponse)
