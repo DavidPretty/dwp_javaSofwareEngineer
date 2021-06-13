@@ -1,5 +1,5 @@
-import mysite.flaskr.user_data as user_data
 import pytest
+import mysite.flaskr.user_data as user_data
 from mock import patch, Mock
 from requests.models import Response
 
