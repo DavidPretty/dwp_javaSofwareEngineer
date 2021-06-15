@@ -8,8 +8,8 @@ from mysite.tests.test_user_data import get_mock_londoners
 
 app = fa.app
 
-mockLondonersResponse = Mock()
-mockLondonersResponse.json_data.return_value = get_mock_londoners()
+mockLondonersJSON = Mock()
+mockLondonersJSON.return_value = get_mock_londoners()
 
 @pytest.fixture
 def client():
@@ -21,7 +21,7 @@ def test_api_get_returns_status_OK(mock_response):
     type(mock_response).status_code = PropertyMock(return_value = 200)
     assert mock_response.status_code == 200
 
-@patch("mysite.flaskr.user_data.get_londoners", mockLondonersResponse)
+@patch("mysite.flaskr.user_data.get_londoners.json", mockLondonersJSON)
 def test_api_get_returns_json():
     response = app.test_client().get('/')
     assert response.is_json
