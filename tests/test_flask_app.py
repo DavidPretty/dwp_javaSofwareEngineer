@@ -18,8 +18,9 @@ def test_api_get_returns_status_OK(mock_response):
     type(mock_response).status_code = PropertyMock(return_value = 200)
     assert mock_response.status_code == 200
 
-@patch("mysite.flaskr.user_data.get_londoners.json", return_value = get_mock_londoners())
-def test_api_get_returns_json():
+@patch("mysite.flaskr.user_data.get_londoners")
+def test_api_get_returns_json(mock_response):
+    mock_response.json(return_value = get_mock_londoners())
     response = app.test_client().get('/')
     assert response.is_json
 
