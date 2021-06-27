@@ -26,6 +26,9 @@ def get_mock_response(url):
 def get_mock_londoners():
     return get_mock_response("https://bpdts-test-app.herokuapp.com/city/London/users")
 
+def get_mock_users():
+    return get_mock_response("https://bpdts-test-app.herokuapp.com/users")
+
 
 @patch("mysite.flaskr.user_data.requests.get")
 def test_get_londoners_returns_status_ok(get_mock_londoners):
