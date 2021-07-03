@@ -43,7 +43,12 @@ def test_get_londoners_and_nearby_not_return_none(mock_londoners_response, mock_
     list = fa.get_londoners_and_nearby()
     assert not list is None
 
-def test_get_londoners_and_nearby_contains_all_users_in_get_londoners():
+
+@patch("mysite.flaskr.user_data.get_users")
+@patch("mysite.flaskr.user_data.get_londoners")
+def test_get_londoners_and_nearby_contains_all_users_in_get_londoners(mock_londoners_response, mock_users_response):
+    mock_londoners_response.json(return_value = get_mock_londoners())
+    mock_users_response.json(return_value = get_mock_users())
     londoners = user_data.get_londoners()
     combined = fa.get_londoners_and_nearby()
     if (londoners is not None) and (combined is not None):
