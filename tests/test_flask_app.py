@@ -59,7 +59,11 @@ def test_get_londoners_and_nearby_contains_all_users_in_get_londoners(mock_londo
     else:
         pytest.fail("one of the lists of users is None")
 
-def test_get_londoners_and_nearby_contains_all_users_in_get_nearby():
+@patch("mysite.flaskr.user_data.get_users")
+@patch("mysite.flaskr.user_data.get_londoners")
+def test_get_londoners_and_nearby_contains_all_users_in_get_nearby(mock_londoners_response, mock_users_response):
+    mock_londoners_response.json(return_value = get_mock_londoners())
+    mock_users_response.json(return_value = get_mock_users())
     nearby = fa.get_nearby()
     combined = fa.get_londoners_and_nearby()
     if (nearby is not None) and (combined is not None):
